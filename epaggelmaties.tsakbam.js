@@ -41,7 +41,7 @@ function getCompanyData() {
             output += "\n\n";
         }
         output += company.querySelector('[itemprop="name"]').innerText + "\n";
-        output += company.querySelector('address').innerText.replace("\n\n", "\n") + "\n";
+        output += company.querySelector('address').innerText.replace("\n\n", " ") + "\n";
         output += Array.from(company.querySelectorAll('[itemprop="telephone"]')).filter(tel => tel.innerText !== '').map(tel => tel.innerText) + "\n";
 
         const ps = company.querySelectorAll('p');
