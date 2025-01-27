@@ -52,7 +52,7 @@ async function goThroughPages() {
     let paginationLi = document.querySelectorAll("#pagination_div2 > ul > li > a");
     let nextButton = paginationLi[paginationLi.length - 2];
     do {
-        content += printDetails();
+        content += getCompanyData();
 
         nextButton.click();
     } while (await new Promise(resolve => setTimeout(() => {
@@ -61,7 +61,7 @@ async function goThroughPages() {
 
         resolve(nextButton.title)
     }, 1000)) !== 'current')
-    content += printDetails();
+    content += getCompanyData();
 
     console.log(content);
     copyTextToClipboard(content);
