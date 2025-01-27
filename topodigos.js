@@ -26,32 +26,29 @@ function copyTextToClipboard(text) {
         fallbackCopyTextToClipboard(text);
         return;
     }
-    navigator.clipboard.writeText(text).then(function () {
+    navigator.clipboard.writeText(text).then(function() {
         console.log('Async: Copying to clipboard was successful!');
-    }, function (err) {
+    }, function(err) {
         console.error('Async: Could not copy text: ', err);
     });
 }
 
 function getCompanyData() {
-    const allCompanies = document.querySelectorAll('#content > div.cells.three > section .cell-data');
+    const allCompanies = document.querySelectorAll('#block-system-main .views-row');
     let output = '';
     allCompanies.forEach(company => {
         if (output !== '') {
-            output += "\n\n";
+            output += "\n";
         }
-        output += company.querySelector('[itemprop="name"]').innerText + "\n";
-        output += company.querySelector('address').innerText.replace("\n\n", " ") + "\n";
-        output += Array.from(company.querySelectorAll('[itemprop="telephone"]')).filter(tel => tel.innerText !== '').map(tel => tel.innerText) + "\n";
-
-        const ps = company.querySelectorAll('p');
-        output += ps[ps.length - 1].innerText;
+        output += company.querySelector('.views-field-title a').innerText + "\n";
+        output += company.querySelector('.views-field-field-address .field-content').innerText + ", ";
+        output += company.querySelector('.views-field-field-telephone .field-content').innerText + "\n";
+        output += company.querySelector('.views-field-field-epaggelma a:first-child').innerText + "\n";
     });
 
     console.log(output);
     copyTextToClipboard(output);
 }
-
 
 let button = document.getElementById('myButton');
 

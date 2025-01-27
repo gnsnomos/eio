@@ -77,6 +77,8 @@ if (!button) {
     button.innerText = 'Click me';
     button.id = 'myButton'; // Add an id to the button
     button.style.width = '100%';
+    button.style.paddingTop = '100px';
+    button.style.paddingBottom = '100px';
     button.style.backgroundColor = '#5cd639';
 
     // Append the button to the body
